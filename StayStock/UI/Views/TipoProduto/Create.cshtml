@@ -1,0 +1,26 @@
+﻿@model UI.Models.Estoque.TipoProdutoViewModel
+
+@{
+    ViewBag.Title = "Cadastrar Tipo Produto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="clearfix"></div>
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Cadastrar Tipo Produto</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li class="navbar-right">
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+
+            @Html.Partial("_ManterCadastro")
+
+        </div>
+    </div>
+</div>

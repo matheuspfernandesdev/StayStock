@@ -1,0 +1,42 @@
+﻿@model UI.Models.Estoque.TipoProdutoViewModel
+
+<div class="x_content">
+    <br />
+    @using (@Html.BeginForm("Create", "TipoProduto", FormMethod.Post, new { id = "demo-form2", @class = "form-horizontal form-label-left" }))
+    {
+        @*<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post">*@
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Identificador)
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="@Model.Nome">
+                Nome <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" id="Nome" name="Nome" value="@Model.Nome" required="required" class="form-control col-md-7 col-xs-12">
+                <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                Descrição
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input id="Descricao" name="Descricao" value="@Model.Descricao" class="form-control col-md-7 col-xs-12" type="text">
+                <span class="fa fa-pencil-square-o form-control-feedback right" aria-hidden="true"></span>
+            </div>
+        </div>
+        <div class="ln_solid"></div>
+
+        <br />
+        <div class="form-group">
+            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                <button type="button" class="btn btn-primary" onclick=@("window.location.href='" + @Url.Action("Index", "TipoProduto") + "'")>Voltar</button>
+                <button type="submit" class="btn btn-success">Salvar</button>
+            </div>
+        </div>
+        @*</form>*@
+    }
+</div>

@@ -1,0 +1,43 @@
+﻿@model UI.Models.Estoque.CorQuantidadeViewModel
+
+@using HtmlHelpers.BeginCollectionItem
+@using UI.Models;
+
+@using (@Html.BeginCollectionItem("ListaCorQuantidade"))
+{
+    <tr>
+        <td>
+            <select class="form-control dropCores">
+                <option value="0">Selecione...</option>
+                @foreach (var item in Model.Cores)
+                {
+                    if (Model.IdentificadorCor == item.Identificador)
+                    {
+                        <option value="@item.Identificador" selected>@item.Nome</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Identificador">@item.Nome</option>
+                    }
+                }
+            </select>
+        </td>
+        <td>
+            <div class="input-group colorHex">
+                <input type="text" name="CodigoHex" required="required" value="@Model.CodigoCor" class="form-control codigoHex" readonly />
+                <span class="input-group-addon"><i></i></span>
+            </div>
+        </td>
+        <td>
+            <input type="number" class="form-control quantidade" name="quantidade" value="@Model.Quantidade" />
+        </td>
+        <td>
+            <input type="text" class="form-control descricao" name="descricao" value="@Model.Descricao" />
+        </td>
+        <td class="text-center">
+            <button type="button" class="btn btn-warning text-center" onclick="excluirRow(this)">
+                <i class="fa fa-trash" title="Excluir Produto Quantidade"></i>
+            </button>
+        </td>
+    </tr>
+}

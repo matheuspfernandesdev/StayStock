@@ -1,0 +1,144 @@
+﻿@model UI.Models.Administrativo.FabricaViewModel
+
+<script src="~/Scripts/Administrativo/fabrica.js"></script>
+<script src="~/Scripts/mask.js"></script>
+
+<div class="x_content">
+    <br />
+    @using (@Html.BeginForm("Create", "Fabrica", FormMethod.Post, new { id = "demo-form2", @class = "form-horizontal form-label-left", @autocomplete = "off" }))
+    {
+        @*<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post">*@
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Identificador)
+        @Html.HiddenFor(model => model.EnderecoViewModel.Identificador)
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                Nome <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" id="Nome" name="Nome" value="@Model.Nome" required="required" class="form-control col-md-7 col-xs-12">
+                <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                CNPJ <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" id="Cnpj" name="CNPJ" value="@Model.CNPJ" required="required" class="form-control col-md-7 col-xs-12 cnpj">
+                <span class="fa fa-building form-control-feedback right" aria-hidden="true"></span>
+            </div>
+        </div>
+        <div class="field item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                Email 
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input id="Email" name="Email" value="@Model.Email" class="form-control col-md-7 col-xs-12 email" type="text" data-validate-linked='email'>
+                <span class="fa fa-envelope form-control-feedback right" aria-hidden="true"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                Telefone
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" id="Telefone" name="Telefone" value="@Model.Telefone" class="form-control col-md-7 col-xs-12 br_cellphones">
+                <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                Descrição
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input id="Descricao" name="Descricao" value="@Model.Descricao" class="form-control col-md-7 col-xs-12" type="text">
+                <span class="fa fa-pencil-square-o form-control-feedback right" aria-hidden="true"></span>
+            </div>
+        </div>
+        <div class="ln_solid"></div>
+
+        <div class="x_title">
+            <h2>Cadastrar endereço</h2>
+            <ul class="nav navbar-right panel_toolbox"></ul>
+            <div class="clearfix"></div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.EnderecoViewModel.CEP, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.EditorFor(model => model.EnderecoViewModel.CEP, new { htmlAttributes = new { @class = "form-control col-md-7 col-xs-12 cep_with_callback" } })
+                    @Html.ValidationMessageFor(model => model.EnderecoViewModel.CEP, "", new { @class = "text-danger" })
+                    <span class="fa fa-road form-control-feedback right" aria-hidden="true"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.EnderecoViewModel.Municipio, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.EditorFor(model => model.EnderecoViewModel.Municipio, new { htmlAttributes = new { @class = "form-control col-md-7 col-xs-12" } })
+                    @Html.ValidationMessageFor(model => model.EnderecoViewModel.Municipio, "", new { @class = "text-danger" })
+                    <span class="fa fa-road form-control-feedback right" aria-hidden="true"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.EnderecoViewModel.Bairro, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.EditorFor(model => model.EnderecoViewModel.Bairro, new { htmlAttributes = new { @class = "form-control col-md-7 col-xs-12" } })
+                    @Html.ValidationMessageFor(model => model.EnderecoViewModel.Bairro, "", new { @class = "text-danger" })
+                    <span class="fa fa-road form-control-feedback right" aria-hidden="true"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.EnderecoViewModel.Rua, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.EditorFor(model => model.EnderecoViewModel.Rua, new { htmlAttributes = new { @class = "form-control col-md-7 col-xs-12" } })
+                    @Html.ValidationMessageFor(model => model.EnderecoViewModel.Rua, "", new { @class = "text-danger" })
+                    <span class="fa fa-road form-control-feedback right" aria-hidden="true"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.EnderecoViewModel.Numero, htmlAttributes: new { @class = "control-label col-md-3 col-sm-3 col-xs-12" })
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    @Html.EditorFor(model => model.EnderecoViewModel.Numero, new { htmlAttributes = new { @class = "form-control col-md-7 col-xs-12" } })
+                    @Html.ValidationMessageFor(model => model.EnderecoViewModel.Numero, "", new { @class = "text-danger" })
+                    <span class="fa fa-road form-control-feedback right" aria-hidden="true"></span>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                <button type="button" class="btn btn-primary" onclick=@("window.location.href='" + @Url.Action("Index", "Fabrica") + "'")>Voltar</button>
+                <button type="submit" class="btn btn-success">Salvar</button>
+            </div>
+        </div>
+        @*</form>*@
+    }
+</div>
+
+@*<script>
+    // initialize a validator instance from the "FormValidator" constructor.
+    // A "<form>" element is optionally passed as an argument, but is not a must
+    var validator = new FormValidator({
+        "events": ['blur', 'input', 'change']
+    }, document.forms[0]);
+    // on form "submit" event
+    document.forms[0].onsubmit = function (e) {
+        var submit = true,
+            validatorResult = validator.checkAll(this);
+        console.log(validatorResult);
+        return !!validatorResult.valid;
+    };
+    // on form "reset" event
+    document.forms[0].onreset = function (e) {
+        validator.reset();
+    };
+    // stuff related ONLY for this demo page:
+    $('.toggleValidationTooltips').change(function () {
+        validator.settings.alerts = !this.checked;
+        if (this.checked)
+            $('form .alert').remove();
+    }).prop('checked', false);
+
+</script>*@

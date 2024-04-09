@@ -1,0 +1,58 @@
+﻿@model UI.Models.Estoque.CorViewModel
+
+<link href="~/Content/css/colorpicker/bootstrap-colorpicker.min.css" rel="stylesheet" />
+<script src="~/Content/js/colorpicker/bootstrap-colorpicker.min.js"></script>
+<script src="~/Scripts/Estoque/cor.js"></script>
+
+<div class="x_content">
+    <br />
+    @using (@Html.BeginForm("Create", "Cor", FormMethod.Post, new { id = "demo-form2", @class = "form-horizontal form-label-left" }))
+    {
+        @*<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post">*@
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Identificador)
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="@Model.NomeCor">
+                Nome Cor <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input type="text" id="NomeCor" name="NomeCor" value="@Model.NomeCor" required="required" class="form-control col-md-7 col-xs-12">
+                <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="control-label col-md-3 col-sm-3">
+                Código Hex / RGBA <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6"> 
+                <div class="input-group colorHex">
+                    <input type="text" id="CodigoHex" name="CodigoHex" required="required" value="@Model.CodigoHex" class="form-control"/>
+                    <span class="input-group-addon"><i></i></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                Descrição
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input id="Descricao" name="Descricao" value="@Model.Descricao" class="form-control col-md-7 col-xs-12" type="text">
+                <span class="fa fa-pencil-alt form-control-feedback right" aria-hidden="true"></span>
+            </div>
+        </div>
+        <div class="ln_solid"></div>
+
+        <br />
+        <div class="form-group">
+            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                <button type="button" class="btn btn-primary" onclick=@("window.location.href='" + @Url.Action("Index", "Cor") + "'")>Voltar</button>
+                <button type="submit" class="btn btn-success botaoProcessar">Salvar</button>
+            </div>
+        </div>
+        @*</form>*@
+    }
+</div>
